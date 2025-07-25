@@ -1,0 +1,26 @@
+<section class="login-container">
+  <mat-card class="login-card" appearance="raised">
+    <mat-card-title>Login</mat-card-title>
+    <mat-divider class="divider" />
+    <mat-card-content class="card-content">
+      <form class="card-content">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput (invalid)="(true)" [formControl]="emailFormControl" />
+          <mat-error>Enter a valid email</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" />
+          <mat-error>Password is required</mat-error>
+        </mat-form-field>
+        <button class="signin-btn" mat-raised-button>Sign in</button>
+      </form>
+    </mat-card-content>
+    <mat-divider class="divider" />
+    <mat-card-footer
+      >Don't have an account yet?
+      <a class="signup-link" routerLink="/signup">Signup.</a></mat-card-footer
+    >
+  </mat-card>
+</section>
