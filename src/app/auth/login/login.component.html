@@ -3,16 +3,24 @@
     <mat-card-title>Login</mat-card-title>
     <mat-divider class="divider" />
     <mat-card-content class="card-content">
-      <form class="card-content">
+      <form
+        [formGroup]="loginForm"
+        (ngSubmit)="onFormSubmit()"
+        class="card-content"
+      >
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput (invalid)="(true)" [formControl]="emailFormControl" />
+          <input matInput formControlName="email" />
+          @if(isValid('email')){
           <mat-error>Enter a valid email</mat-error>
+          }
         </mat-form-field>
         <mat-form-field>
           <mat-label>Password</mat-label>
-          <input matInput type="password" />
+          <input matInput type="password" formControlName="password" />
+          @if(isValid('password')){
           <mat-error>Password is required</mat-error>
+          }
         </mat-form-field>
         <button class="signin-btn" mat-raised-button>Sign in</button>
       </form>

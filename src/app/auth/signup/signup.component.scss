@@ -1,0 +1,27 @@
+.signup-container {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  .signup-card {
+    max-width: 600px;
+    min-width: 420px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    .card-content {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      .signin-btn {
+        padding-inline: 45px;
+      }
+    }
+    .login-link {
+      color: #005cbb;
+      text-decoration: none;
+    }
+  }
+}

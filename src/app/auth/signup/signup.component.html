@@ -1,0 +1,41 @@
+<section class="signup-container">
+  <mat-card class="signup-card" appearance="raised">
+    <mat-card-title>Create an account</mat-card-title>
+    <mat-divider class="divider" />
+    <mat-card-content class="card-content">
+      <form
+        [formGroup]="signupFormGroup"
+        (ngSubmit)="onFormSubmit()"
+        class="card-content"
+      >
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput (invalid)="(true)" formControlName="email" />
+          @if(isValid('email')){
+          <mat-error>Enter a valid email</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" />
+          @if(isValid('password')){
+          <mat-error>Password must be atleat 6 characters</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" formControlName="confirmPassword" />
+          @if(isValid('confirmPassword')){
+          <mat-error>Password should be same</mat-error>
+          }
+        </mat-form-field>
+        <button class="signin-btn" mat-raised-button>Sign up</button>
+      </form>
+    </mat-card-content>
+    <mat-divider class="divider" />
+    <mat-card-footer
+      >Aleardy have an account?
+      <a class="login-link" routerLink="/login">Signin.</a></mat-card-footer
+    >
+  </mat-card>
+</section>
