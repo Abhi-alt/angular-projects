@@ -4,7 +4,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -33,6 +33,7 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class SignupComponent {
   private authService = inject(AuthService);
+  private router = inject(Router);
   signupFormGroup = new FormGroup<SignupInterface>(
     {
       email: new FormControl<string>('', [
@@ -55,10 +56,9 @@ export class SignupComponent {
     const email = this.signupFormGroup.get('email')?.value;
     const password = this.signupFormGroup.get('password')?.value;
     if (!email || !password) return;
-    this.authService
-      .signupUser(email, password)
-      .then((resp) => console.log(resp))
-      .catch((err) => console.log(err.message));
+    this.authService.signupUser(email, password).then((resp) => {
+      this.router.navigate(['login']);
+    });
   }
 
   isValid(controlName: string) {

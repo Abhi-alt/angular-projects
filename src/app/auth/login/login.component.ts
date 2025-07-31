@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { LoginFormInterface } from './login.interface';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,13 +29,17 @@ import { LoginFormInterface } from './login.interface';
   ],
 })
 export class LoginComponent {
+  authService = inject(AuthService);
   loginForm = new FormGroup<LoginFormInterface>({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
   onFormSubmit() {
     this.loginForm.markAllAsTouched();
-    console.log(this.loginForm);
+    const { email, password } = this.loginForm.value;
+    if (!!email && !!password) {
+      this.authService.loginUser(email, password);
+    }
   }
   isValid(controlName: string) {
     const control = this.loginForm.get(controlName);

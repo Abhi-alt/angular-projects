@@ -21,7 +21,11 @@ export const appConfig: ApplicationConfig = {
     provideEffects(),
     provideAnimations(),
     provideHttpClient(),
-    provideToastr({ progressBar: true, timeOut: 2000 }),
+    provideToastr({
+      progressBar: true,
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
+    }),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
   ],
