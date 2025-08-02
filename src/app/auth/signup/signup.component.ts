@@ -16,6 +16,8 @@ import {
 } from '@angular/forms';
 import { SignupInterface } from './signup.interface';
 import { AuthService } from '../../core/services/auth.service';
+import { Store } from '@ngrx/store';
+import { loadingAction } from '../../core/store/app-state/app-state.actions';
 
 @Component({
   selector: 'app-signup',
@@ -32,6 +34,7 @@ import { AuthService } from '../../core/services/auth.service';
   ],
 })
 export class SignupComponent {
+  private store = inject(Store);
   private authService = inject(AuthService);
   private router = inject(Router);
   signupFormGroup = new FormGroup<SignupInterface>(
@@ -56,9 +59,13 @@ export class SignupComponent {
     const email = this.signupFormGroup.get('email')?.value;
     const password = this.signupFormGroup.get('password')?.value;
     if (!email || !password) return;
-    this.authService.signupUser(email, password).then((resp) => {
-      this.router.navigate(['login']);
-    });
+    this.store.dispatch(loadingAction({ loading: true }));
+    this.authService
+      .signupUser(email, password)
+      .then((resp) => {
+        this.router.navigate(['login']);
+      })
+      .finally(() => this.store.dispatch(loadingAction({ loading: false })));
   }
 
   isValid(controlName: string) {

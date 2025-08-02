@@ -13,6 +13,8 @@ import {
 } from '@angular/forms';
 import { LoginFormInterface } from './login.interface';
 import { AuthService } from '../../core/services/auth.service';
+import { Store } from '@ngrx/store';
+import { loadingAction } from '../../core/store/app-state/app-state.actions';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +32,7 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class LoginComponent {
   authService = inject(AuthService);
+  private store = inject(Store);
   loginForm = new FormGroup<LoginFormInterface>({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -38,7 +41,10 @@ export class LoginComponent {
     this.loginForm.markAllAsTouched();
     const { email, password } = this.loginForm.value;
     if (!!email && !!password) {
-      this.authService.loginUser(email, password);
+      this.store.dispatch(loadingAction({ loading: true }));
+      this.authService
+        .loginUser(email, password)
+        .finally(() => this.store.dispatch(loadingAction({ loading: false })));
     }
   }
   isValid(controlName: string) {
