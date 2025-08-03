@@ -8,6 +8,39 @@
           <img src="/bank-logo.svg" alt="bank-logo" class="greeting-logo" />
         </mat-card-content>
       </mat-card>
+      <p>Overview:</p>
+      <div class="balance-overview">
+        <div class="current-month">
+          <p>Current month:</p>
+          <p class="balance">{{ "520" | currency }}</p>
+        </div>
+        <div class="overall">
+          <p>Total balance:</p>
+          <p class="balance">{{ "5201" | currency }}</p>
+        </div>
+      </div>
+      <div class="quick-transaction">
+        <button class="logo">
+          <img src="/travel-logo.svg" alt="travel-logo" />
+          <p>Travel</p>
+        </button>
+        <button class="logo">
+          <img src="/communication-logo.svg" alt="travel-logo" />
+          <p>Communication</p>
+        </button>
+        <button class="logo">
+          <img src="/food-logo.svg" alt="travel-logo" />
+          <p>Food</p>
+        </button>
+        <button class="logo">
+          <img src="/housing-logo.svg" alt="travel-logo" />
+          <p>Housing</p>
+        </button>
+        <button class="logo">
+          <img src="/add-logo.svg" alt="travel-logo" />
+          <p>Add</p>
+        </button>
+      </div>
     </div>
     <mat-divider [vertical]="true" />
   </div>

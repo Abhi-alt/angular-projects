@@ -21,5 +21,34 @@
         }
       }
     }
+    .balance-overview {
+      display: flex;
+      justify-content: space-between;
+      .balance {
+        font-weight: 800;
+        font-size: 24px;
+      }
+    }
+    .quick-transaction {
+      display: flex;
+      justify-content: space-around;
+      gap: 18px;
+      .logo {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        height: 100%;
+        width: fit-content;
+        gap: 6px;
+        border: none;
+        background: transparent;
+        gap: 12px;
+        cursor: pointer;
+        img {
+          width: 42px;
+          height: 42px;
+        }
+      }
+    }
   }
 }
