@@ -1,0 +1,25 @@
+.overview-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 32px 0px;
+  .overview-section,
+  .income-section,
+  .expenses-section {
+    display: flex;
+    gap: 12px;
+    .user-card-greeting {
+      background: var(--mat-sys-primary);
+      color: white;
+      padding-inline: 18px;
+      .greeting-content {
+        display: flex;
+        align-items: center;
+        gap: 45px;
+        .greeting-logo {
+          width: 45px;
+        }
+      }
+    }
+  }
+}
