@@ -8,7 +8,7 @@ export interface AppState {
 }
 
 export interface UserDetailsInterface {
-  email: string;
-  user_id: string;
-  access_token: string;
+  email: string | null;
+  user_id: string | null;
+  access_token: string | null;
 }

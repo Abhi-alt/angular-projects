@@ -30,12 +30,16 @@ export class AuthService {
         email,
         password
       );
-      console.log(userDetail);
+      const access_token = await userDetail.user.getIdToken();
+      const _email = userDetail.user.email;
+      const user_id = userDetail.user.uid;
+      return { access_token, email: _email, user_id };
     } catch (error: any) {
       console.log(error.code);
       if (error.code === 'auth/invalid-credential') {
         this.toastrService.error('Invalid Email/Password', 'Login Failed');
       }
+      return false;
     }
   }
 }

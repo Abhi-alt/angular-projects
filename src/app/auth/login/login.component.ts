@@ -4,7 +4,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   FormControl,
   FormGroup,
@@ -15,6 +15,7 @@ import { LoginFormInterface } from './login.interface';
 import { AuthService } from '../../core/services/auth.service';
 import { Store } from '@ngrx/store';
 import { loadingAction } from '../../core/store/app-state/app-state.actions';
+import { userDetailsAction } from '../../core/store/user-details/user-details.action';
 
 @Component({
   selector: 'app-login',
@@ -31,8 +32,9 @@ import { loadingAction } from '../../core/store/app-state/app-state.actions';
   ],
 })
 export class LoginComponent {
-  authService = inject(AuthService);
+  private authService = inject(AuthService);
   private store = inject(Store);
+  private router = inject(Router);
   loginForm = new FormGroup<LoginFormInterface>({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
@@ -44,6 +46,13 @@ export class LoginComponent {
       this.store.dispatch(loadingAction({ loading: true }));
       this.authService
         .loginUser(email, password)
+        .then((resp) => {
+          console.log(resp);
+          if (resp) {
+            this.store.dispatch(userDetailsAction(resp));
+            this.router.navigate(['/']);
+          }
+        })
         .finally(() => this.store.dispatch(loadingAction({ loading: false })));
     }
   }

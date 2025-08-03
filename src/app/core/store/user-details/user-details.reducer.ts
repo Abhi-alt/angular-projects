@@ -3,7 +3,7 @@ import { userDetailsAction } from './user-details.action';
 import { UserDetailsInterface } from '../store.interface';
 
 const initialState: UserDetailsInterface = {
-  access_token: '',
+  access_token: 'dggsjksvhsu',
   email: '',
   user_id: '',
 };

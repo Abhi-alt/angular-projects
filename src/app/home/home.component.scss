@@ -1,0 +1,13 @@
+.header-container {
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-primary);
+  padding: 8px 24px;
+  .header-items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    width: 150px;
+  }
+}
