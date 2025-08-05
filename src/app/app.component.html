@@ -14,7 +14,7 @@
   </nav>
 </header>
 <mat-menu #profile="matMenu">
-  <div mat-menu-item>Edit Profile</div>
+  <div mat-menu-item (click)="onDialogOpen()">Edit Profile</div>
   <div mat-menu-item>Sign out</div>
 </mat-menu>
 <router-outlet />

@@ -9,6 +9,9 @@ import { appSelector } from './core/store/app-state/app-state.selector';
 import { AsyncPipe } from '@angular/common';
 import { map } from 'rxjs';
 
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { ProfileModal } from './components/profile-modal/profile-modal.component';
+
 @Component({
   selector: 'app-root',
   imports: [
@@ -24,5 +27,13 @@ import { map } from 'rxjs';
 })
 export class AppComponent {
   private store = inject(Store);
+  readonly dialog = inject(MatDialog);
   isLoading = this.store.select(appSelector).pipe(map((app) => app.loading));
+
+  onDialogOpen() {
+    const dialogRef = this.dialog.open(ProfileModal, { minWidth: 620 });
+    dialogRef
+      .afterClosed()
+      .subscribe((result) => console.log('closed', result));
+  }
 }

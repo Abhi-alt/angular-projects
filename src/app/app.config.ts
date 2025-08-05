@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideZoneChangeDetection, isDevMode } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideZoneChangeDetection,
+  isDevMode,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -11,6 +15,7 @@ import { provideHttpClient } from '@angular/common/http';
 
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { firebaseConfig } from '../../app.env';
 import { store } from './core/store/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
@@ -24,12 +29,13 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideHttpClient(),
     provideToastr({
-        progressBar: true,
-        timeOut: 2000,
-        positionClass: 'toast-bottom-right',
+      progressBar: true,
+      timeOut: 2000,
+      positionClass: 'toast-bottom-right',
     }),
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideAuth(() => getAuth()),
-    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() })
-],
+    provideFirestore(() => getFirestore()),
+    provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
+  ],
 };

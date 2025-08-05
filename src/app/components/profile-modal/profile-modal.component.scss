@@ -1,0 +1,17 @@
+.row {
+  display: flex;
+  flex-direction: column;
+}
+
+.col {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+  .full {
+    flex: 1;
+  }
+}
+
+.profile-content {
+  padding-inline: 72px;
+}
